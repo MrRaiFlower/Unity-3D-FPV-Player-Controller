@@ -1093,7 +1093,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ObjectInteraction
   cameraObject: {fileID: 5364733618888357340}
-  range: 1.5
+  playerLayerMask:
+    serializedVersion: 2
+    m_Bits: 64
+  range: 2
 --- !u!1 &8136885300077075098
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,10 +1,11 @@
-using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class ObjectInteraction : MonoBehaviour
 {
     [SerializeField] private GameObject cameraObject;
+
+    [SerializeField] private LayerMask playerLayerMask;
 
     [SerializeField] private float range;
 
@@ -20,10 +21,12 @@ public class ObjectInteraction : MonoBehaviour
         if (interactAction.WasPressedThisFrame())
         {
             RaycastHit hit;
-            Physics.Raycast(cameraObject.transform.position, cameraObject.transform.forward, out hit, range);
-            if (hit.collider.gameObject.TryGetComponent(out InteractableObject interactableObject))
+            if (Physics.Raycast(cameraObject.transform.position, cameraObject.transform.forward, out hit, range, ~playerLayerMask))
             {
-                interactableObject.Interact();
+                if (hit.collider.gameObject.TryGetComponent(out InteractableObject interactableObject))
+                {
+                    interactableObject.Interact();
+                }
             }
         }
     }

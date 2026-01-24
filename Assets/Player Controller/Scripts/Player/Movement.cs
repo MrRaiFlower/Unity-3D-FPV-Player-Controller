@@ -175,7 +175,7 @@ public class Movement : MonoBehaviour
         isGrounded = Physics.CheckSphere(playerObject.transform.position + Vector3.up * characterControllerComponent.radius * 0.475f, characterControllerComponent.radius * 0.95f, ~playerLayerMask);
         hasGrounded = !wasGrounded && isGrounded;
 
-        if (hasGrounded)
+        if (hasGrounded && -verticalVelocity.y > jumpSpeed * 0.95f)
         {
             playerSoundScript.PlayLandingSound();
         }
